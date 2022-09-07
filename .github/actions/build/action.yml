@@ -1,0 +1,27 @@
+name: Build and publish docker images
+description: Build Rapid Response custom image with kubectl
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Create release
+      id: release
+      uses: rymndhng/release-on-push-action@master
+      with:
+        release_name: "Rapid Response Custom <RELEASE_TAG>"
+        bump_version_scheme: minor
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v1
+      with:
+        dockerfile: Dockerfile
+        registry: ghcr.io
+        username: "dark-vex"
+        password: ${{ secrets.REPO_SCOPED_TOKEN }}
+        repository: dark-vex/ra-custom
+        tags: latest
+        push: true
