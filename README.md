@@ -11,7 +11,7 @@ On sysdig-deploy helm chart `values.yaml` override the default image with the cu
       rapidResponse:
         image:
           registry: ghcr.io
-          repository: dark-vex/ra-custom
+          repository: <repo-name/<image-name>
           tag: latest
         passphrase: "justarandomtestpassword"
         existingPassphraseSecret: ""
