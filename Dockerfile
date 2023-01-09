@@ -4,7 +4,7 @@ FROM alpine:3.13
 COPY --from=base-image /usr/bin/host /usr/bin/host
 
 RUN apk update && \
-    apk add curl && \
+    apk add curl bash && \
     rm -rf /var/cache/apk/*
 
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
